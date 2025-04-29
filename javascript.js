@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
   if (!accordionBlock) return;
 
   if (productItem) {
+    accordionBlock.style.order = "5";
     const positionWrapper = document.querySelector(".ProductItem-quantity-add-to-cart");
     if (position === "before") {
       positionWrapper?.insertAdjacentElement("beforebegin", accordionBlock);
