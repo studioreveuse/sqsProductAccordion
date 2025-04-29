@@ -16,21 +16,24 @@ document.addEventListener("DOMContentLoaded", function () {
       positionWrapper?.insertAdjacentElement("afterend", accordionBlock);
     }
   } else if (pdpLayout) {
-    const wrappers = document.querySelectorAll(".sqs-add-to-cart-button-wrapper:not(.add-on-add-to-cart-wrapper)");
+    const wrappers = document.querySelectorAll(".sqs-add-to-cart-button-wrapper");
 
     wrappers.forEach(wrapper => {
-      const qtyInput = wrapper.querySelector(".product-quantity-input");
+      const qtyInput = wrapper.previousElementSibling?.classList.contains("product-quantity-input")
+        ? wrapper.previousElementSibling
+        : null;
 
-      if (position === "before") {
-        if (qtyInput) {
-          qtyInput.insertAdjacentElement("beforebegin", accordionBlock.cloneNode(true));
-        } else {
-          wrapper.insertAdjacentElement("beforebegin", accordionBlock.cloneNode(true));
-        }
+      const clone = accordionBlock.cloneNode(true);
+
+      if (qtyInput) {
+        qtyInput.insertAdjacentElement("beforebegin", clone);
+      } else if (position === "before") {
+        wrapper.insertAdjacentElement("beforebegin", clone);
       } else {
-        wrapper.insertAdjacentElement("afterend", accordionBlock.cloneNode(true));
+        wrapper.insertAdjacentElement("afterend", clone);
       }
     });
+
     accordionBlock.remove();
   }
 });
