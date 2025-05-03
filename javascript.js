@@ -45,11 +45,6 @@ function handleSpecialLinks() {
   accordionItems.forEach((item, index) => {
     const dropdown = item.querySelector('.accordion-item__dropdown');
     const description = dropdown?.querySelector('.accordion-item__description');
-    
-    if (!dropdown || !description) {
-      return;
-    }
-    
     const content = description.innerHTML;
     
     const hasDrawerLink = content.includes('[drawer_link]') && content.includes('#sr-drawer');
@@ -78,7 +73,7 @@ function handleSpecialLinks() {
           innerAnchor.className = 'accordion-item__link';
           innerAnchor.style.textDecoration = 'none';
           innerAnchor.style.color = 'inherit';
-          innerAnchor.style.display = 'block'; // Ensure it behaves like a block element
+          innerAnchor.style.display = 'block';
           innerAnchor.innerHTML = liContent;
           item.innerHTML = '';
           item.appendChild(innerAnchor);
