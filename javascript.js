@@ -1,3 +1,8 @@
+/*==========
+  Squarespace Product Accordion Plugin
+  Copyright Studio Rêveuse
+========== */
+
 document.addEventListener("DOMContentLoaded", function () {
   const position = window.productAccordionPosition || "after";
 
