@@ -1,45 +1,44 @@
 /*==========
-  Squarespace Product V2 - Product Accordion Plugin
+  Squarespace Product Accordion Plugin
   Copyright Studio Rêveuse
 ========== */
 
-document.addEventListener("DOMContentLoaded", () => {
-  const accordion = document.querySelector(".accordion-block");
-  if (!accordion) return;
+document.addEventListener("DOMContentLoaded", function () {
+  const position = window.productAccordionPosition || "after";
 
-  // Layout selectors
-  const layouts = [
-    '[data-product-detail-layout="wrap"]',
-    '[data-product-detail-layout="full"]',
-    '[data-product-detail-layout="half"]',
-    '[data-product-detail-layout="simple"]'
-  ];
+  const productItem = document.querySelector(".ProductItem");
+  const pdpLayout = document.querySelector(".pdp-layout");
+  const accordionBlock = document.querySelector(".accordion-block");
 
-  const productDetailSections = document.querySelectorAll(".product-detail-section");
-  let productDetailSection = null;
+  if (!accordionBlock) return;
 
-  productDetailSections.forEach(section => {
-    if (section.querySelector(layouts.join(", "))) {
-      productDetailSection = section;
-    }
-  });
-
-  if (!productDetailSection) return;
-
-  const addToCart = productDetailSection.querySelector(".product-add-to-cart");
-  if (!addToCart) return;
-
-  const accordionPosition = window.productAccordionPosition || "after";
-
-  if (accordionPosition === "before") {
-    const variants = productDetailSection.querySelector(".product-variants");
-    if (variants && variants.compareDocumentPosition(addToCart) & Node.DOCUMENT_POSITION_FOLLOWING) {
-      // .product-variants exists before .product-add-to-cart
-      variants.insertAdjacentElement("beforebegin", accordion);
+  if (productItem) {
+    accordionBlock.style.order = "5";
+    const positionWrapper = document.querySelector(".ProductItem-quantity-add-to-cart");
+    if (position === "before") {
+      positionWrapper?.insertAdjacentElement("beforebegin", accordionBlock);
     } else {
-      addToCart.insertAdjacentElement("beforebegin", accordion);
+      positionWrapper?.insertAdjacentElement("afterend", accordionBlock);
     }
-  } else {
-    addToCart.insertAdjacentElement("afterend", accordion);
+  } else if (pdpLayout) {
+    const wrappers = document.querySelectorAll(".sqs-add-to-cart-button-wrapper");
+
+    wrappers.forEach(wrapper => {
+      const qtyInput = wrapper.previousElementSibling?.classList.contains("product-quantity-input")
+        ? wrapper.previousElementSibling
+        : null;
+
+      const clone = accordionBlock.cloneNode(true);
+
+      if (qtyInput) {
+        qtyInput.insertAdjacentElement("beforebegin", clone);
+      } else if (position === "before") {
+        wrapper.insertAdjacentElement("beforebegin", clone);
+      } else {
+        wrapper.insertAdjacentElement("afterend", clone);
+      }
+    });
+
+    accordionBlock.remove();
   }
 });
