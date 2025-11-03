@@ -42,4 +42,6 @@ document.addEventListener("DOMContentLoaded", () => {
   } else {
     addToCart.insertAdjacentElement("afterend", accordion);
   }
+
+  console.log('Product Accordion Plugin Installed. Copyright Studio Reveuse https://studioreveuse.com.au');
 });
