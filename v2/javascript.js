@@ -43,5 +43,5 @@ document.addEventListener("DOMContentLoaded", () => {
     addToCart.insertAdjacentElement("afterend", accordion);
   }
 
-  console.log('Product Accordion Plugin Installed. Copyright Studio Reveuse https://studioreveuse.com.au');
+  console.log('[Product Accordion] Plugin Installed. Copyright Studio Reveuse https://studioreveuse.com.au');
 });
