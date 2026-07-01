@@ -1,5 +1,5 @@
 /*==========
-  Squarespace Product V2.2.0 - Product Accordion Plugin
+  Squarespace Product V2.2.1 - Product Accordion Plugin
   Copyright Studio Rêveuse
 ========== */
 document.addEventListener("DOMContentLoaded", () => {
