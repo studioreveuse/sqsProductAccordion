@@ -3,7 +3,7 @@
   Copyright Studio Rêveuse
 ========== */
 document.addEventListener("DOMContentLoaded", () => {
-  const accordion = document.querySelector(".ProductItem-additional .accordion-block, #accordion-section .other-block");
+  const accordion = document.querySelector(".ProductItem-additional .accordion-block, #accordion-section .accordion-block");
   if (!accordion) return;
 
   // Layout selectors
