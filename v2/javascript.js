@@ -3,7 +3,7 @@
   Copyright Studio Rêveuse
 ========== */
 document.addEventListener("DOMContentLoaded", () => {
-  const accordion = document.querySelector(".ProductItem-additional .accordion-block");
+  const accordion = document.querySelector(".ProductItem-additional .accordion-block, #accordion-section .other-block");
   if (!accordion) return;
 
   // Layout selectors
@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
   document.head.appendChild(style);
 
   // Add class to parent section if ProductItem-additional is empty
-  const productItemAdditional = document.querySelector(".ProductItem-additional");
+  const productItemAdditional = document.querySelector(".ProductItem-additional, #accordion-section");
   if (productItemAdditional) {
     const contentBlocks = productItemAdditional.querySelectorAll(".sqs-col-12, .fe-block");
     const allEmpty = contentBlocks.length > 0 && [...contentBlocks].every(block => block.children.length === 0);
